@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    /* 1. Ganzzahlen einlesen, Summe und Quotient (int) */
+    int iErste = 0;
+    int iZweite = 0;
+
+    printf("Bitte die erste ganze Zahl eingeben: ");
+    scanf("%d", &iErste);
+    printf("Bitte die zweite ganze Zahl eingeben: ");
+    scanf("%d", &iZweite);
+
+    int iSumme = iErste + iZweite;
+    int iQuotient = iErste / iZweite;
+    printf("Summe (int): %d\n", iSumme);
+    printf("Quotient (int): %d\n", iQuotient);
+
+    /* 2. Summe und Quotient als double speichern */
+    double dSumme = iErste + iZweite;
+    double dQuotient = iErste / iZweite;
+    printf("Summe (double): %f\n", dSumme);
+    printf("Quotient (double): %f\n", dQuotient);
+
+    /* 3. Operanden vorher explizit nach double umwandeln */
+    double dSummeCast = (double) iErste + (double) iZweite;
+    double dQuotientCast = (double) iErste / (double) iZweite;
+    printf("Summe (mit Cast): %f\n", dSummeCast);
+    printf("Quotient (mit Cast): %f\n", dQuotientCast);
+    /*
+    Unterschied: Ohne Cast sind beide Operanden int, die Division wird
+    als Ganzzahldivision ausgefuehrt und die Nachkommastellen gehen
+    verloren, bevor das Ergebnis nach double umgewandelt wird.
+    Mit Cast wird die Division mit double-Werten durchgefuehrt.
+    */
+
+    /* 4. Vor- und Nachname einlesen und zusammensetzen */
+    char vorname[50] = "";
+    char nachname[50] = "";
+
+    printf("Bitte den Vornamen eingeben: ");
+    scanf(" %49s", vorname);
+    printf("Bitte den Nachnamen eingeben: ");
+    scanf(" %49s", nachname);
+
+    char vornameName[101] = "";
+    char nameVorname[102] = "";
+
+    strcpy(vornameName, vorname);
+    strcat(vornameName, " ");
+    strcat(vornameName, nachname);
+
+    strcpy(nameVorname, nachname);
+    strcat(nameVorname, ", ");
+    strcat(nameVorname, vorname);
+
+    printf("Name (Vorname Nachname): %s\n", vornameName);
+    printf("Name (Name, Vorname): %s\n", nameVorname);
+
+    /* 5. Eigener Block */
+    {
+        /* a) eindimensionales Feld */
+        int iFeld[2] = { 1, 2 };
+        printf("iFeld[0]: %d\n", iFeld[0]);
+        printf("iFeld[1]: %d\n", iFeld[1]);
+
+        /* b) zweidimensionales Feld */
+        int spielfeld[2][3] = { { 1, 2, 3 },
+                                { 4, 5, 6 } };
+        for (int y = 0; y < 2; y++)
+        {
+            for (int x = 0; x < 3; x++)
+            {
+                printf("%d ", spielfeld[y][x]);
+            }
+            printf("\n");
+        }
+
+        /* c) Konstante iZweite im Block */
+        const int iZweite = 1;
+        printf("iZweite im Block: %d\n", iZweite);
+    }
+    printf("iZweite nach dem Block: %d\n", iZweite);
+
+    /* 6. Erste beiden Buchstaben des Vornamens als ASCII-Zahl */
+    int iName1 = vorname[0];
+    int iName2 = vorname[1];
+    printf("ASCII-Wert des 1. Buchstabens: %d\n", iName1);
+    printf("ASCII-Wert des 2. Buchstabens: %d\n", iName2);
+
+    /* 7. Position im Alphabet, unabhaengig von Gross-/Kleinschreibung */
+    int iPosition1 = iName1 % 32;
+    int iPosition2 = iName2 % 32;
+    printf("Position des 1. Buchstabens im Alphabet: %d\n", iPosition1);
+    printf("Position des 2. Buchstabens im Alphabet: %d\n", iPosition2);
+
+    return 0;
+}
