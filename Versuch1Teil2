@@ -1,0 +1,59 @@
+/*
+Strukturen.c
+Versuch 1, Teil 2: Struktur Person, Eingabe, Kopieren und Ausgabe.
+*/
+#include <stdio.h>
+#include <string.h>
+
+typedef struct
+{
+    char nachname[50];
+    char vorname[50];
+    int iGeburtsjahr;
+    int iAlter;
+} Person;
+
+int main()
+{
+    /* 1. Struktur-Variable anlegen und Daten einlesen */
+    Person nBenutzer = { "", "", 0, 0 };
+
+    printf("Bitte den Nachnamen eingeben: ");
+    scanf(" %49s", nBenutzer.nachname);
+    printf("Bitte den Vornamen eingeben: ");
+    scanf(" %49s", nBenutzer.vorname);
+    printf("Bitte das Geburtsjahr eingeben: ");
+    scanf("%d", &nBenutzer.iGeburtsjahr);
+    printf("Bitte das Alter eingeben: ");
+    scanf("%d", &nBenutzer.iAlter);
+
+    printf("\nInhalt von nBenutzer:\n");
+    printf("Nachname: %s\n", nBenutzer.nachname);
+    printf("Vorname: %s\n", nBenutzer.vorname);
+    printf("Geburtsjahr: %d\n", nBenutzer.iGeburtsjahr);
+    printf("Alter: %d\n", nBenutzer.iAlter);
+
+    /* 2a. Jedes Element einzeln kopieren */
+    Person nKopieEinzeln = { "", "", 0, 0 };
+    strcpy(nKopieEinzeln.nachname, nBenutzer.nachname);
+    strcpy(nKopieEinzeln.vorname, nBenutzer.vorname);
+    nKopieEinzeln.iGeburtsjahr = nBenutzer.iGeburtsjahr;
+    nKopieEinzeln.iAlter = nBenutzer.iAlter;
+
+    printf("\nInhalt von nKopieEinzeln:\n");
+    printf("Nachname: %s\n", nKopieEinzeln.nachname);
+    printf("Vorname: %s\n", nKopieEinzeln.vorname);
+    printf("Geburtsjahr: %d\n", nKopieEinzeln.iGeburtsjahr);
+    printf("Alter: %d\n", nKopieEinzeln.iAlter);
+
+    /* 2b. Gesamte Struktur auf einmal kopieren */
+    Person nKopieGesamt = nBenutzer;
+
+    printf("\nInhalt von nKopieGesamt:\n");
+    printf("Nachname: %s\n", nKopieGesamt.nachname);
+    printf("Vorname: %s\n", nKopieGesamt.vorname);
+    printf("Geburtsjahr: %d\n", nKopieGesamt.iGeburtsjahr);
+    printf("Alter: %d\n", nKopieGesamt.iAlter);
+
+    return 0;
+}
